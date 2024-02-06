@@ -7,7 +7,15 @@
         "default_title": "SpeedReeds",
         "default_popup": "index.html"
     },
+    "background": {
+        "service_worker": "textLoad.js"
+    },
     "permissions": [
-        "storage"
-    ]
+        "storage",
+        "contextMenus"
+    ],
+    "icons": {
+        "16": "panda_icon.png",
+        "48": "icon2.png"
+    }
 }
