@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "SpeedReeds",
+    "version": "0.1.0",
+    "description": "Reed Quicker!",
+    "action": {
+        "default_title": "SpeedReeds",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "storage"
+    ]
+}
