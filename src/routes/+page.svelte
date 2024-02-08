@@ -1,4 +1,2 @@
 <h1>Welcome to SpeedReeds!</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<p>To use SpeedReeds, right click on highlighted text and select "Reed It!"</p>

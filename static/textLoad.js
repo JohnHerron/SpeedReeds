@@ -6,14 +6,17 @@ var contextMenuItem = {
   title: "Reed It!",
   contexts: ["selection"],
 };
+var popupWindow = {
+  focused: true,
+  url: chrome.runtime.getURL("home.html"),
+  type: "popup",
+};
 // A generic onclick callback function.
 function genericOnClick(info) {
   // Standard context menu item function
   console.log("Standard context menu item clicked.");
   console.log(info.selectionText);
-
-  // let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-  // width=0,height=0,left=-1000,top=-1000`;
-  // open("/popup.html", "test", params);
+  chrome.storage.local.set(info);
+  chrome.windows.create(popupWindow);
 }
 chrome.contextMenus.create(contextMenuItem);
