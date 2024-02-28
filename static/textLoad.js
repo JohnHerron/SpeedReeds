@@ -1,6 +1,8 @@
 // A generic onclick callback function.
 chrome.contextMenus.onClicked.addListener(genericOnClick);
 
+
+
 var contextMenuItem = {
   id: "readText",
   title: "Reed It!",
@@ -13,10 +15,11 @@ var popupWindow = {
 };
 // A generic onclick callback function.
 function genericOnClick(info) {
-  // Standard context menu item function
-  console.log("Standard context menu item clicked.");
-  console.log(info.selectionText);
-  chrome.storage.local.set(info);
+
+  // Setting the selectionText.
+  const selectionText = info.selectionText;
+  chrome.storage.local.set({ "selectionText": selectionText });
+
   chrome.windows.create(popupWindow);
 }
 chrome.contextMenus.create(contextMenuItem);
