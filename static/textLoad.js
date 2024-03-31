@@ -18,7 +18,13 @@ function genericOnClick(info) {
 
   // Setting the selectionText.
   const selectionText = info.selectionText;
-  chrome.storage.local.set({ "selectionText": selectionText });
+
+  // Split the selectionText into separate words
+  var split = selectionText.split(" ");
+  console.log(split)
+
+  chrome.storage.local.set({ "selectionText": split });
+  
 
   chrome.windows.create(popupWindow);
 }
