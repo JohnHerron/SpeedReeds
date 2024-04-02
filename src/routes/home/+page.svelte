@@ -18,33 +18,30 @@
     // change wpm according to value selected in dropdown menu
     var wpm = 100;
 
-    // Dictionary to assign time to each word based on its length in letters
-    var dict = {
-    1: 1 / (wpm / 2),
-    2: 1 / (wpm / 2),
-    3: 1 / (wpm / 2),
-    4: 1 / (wpm / 2),
-    5: 1 / (wpm / 3),
-    6: 1 / (wpm / 3)
-    };
-
     var currentIndex = 0;
-    // @ts-ignore
     var intervalId = null;
 
-    function startAutomaticChange() {
-        intervalId = setInterval(showNextWord, 500); // Change every half second
+    function showNextWord() {
+        currentIndex = (currentIndex + 1) % selectionText.length;
+        console.log(currentIndex);
+        if (currentIndex === selectionText.length - 1){
+            stopAutomaticChange();
+        } else {
+            startAutomaticChange();
+        }
     }
 
-    function showNextWord(){
-        currentIndex = (currentIndex + 1) % selectionText.length;
+    function startAutomaticChange(){
         if (selectionText[currentIndex] == ""){
             currentIndex += 1;
         }
-        if (currentIndex == selectionText.length - 1){
-            // @ts-ignore
-            clearInterval(intervalId);
-        }
+        let currentWord = selectionText[currentIndex];
+        let delay = currentWord.length * (wpm / 2);
+        intervalId = setTimeout(showNextWord, delay);
+    }
+
+    function stopAutomaticChange() {
+        clearInterval(intervalId);
     }
 
 
