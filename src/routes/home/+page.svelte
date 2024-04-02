@@ -28,6 +28,24 @@
     6: 1 / (wpm / 3)
     };
 
+    var currentIndex = 0;
+    // @ts-ignore
+    var intervalId = null;
+
+    function startAutomaticChange() {
+        intervalId = setInterval(showNextWord, 500); // Change every half second
+    }
+
+    function showNextWord(){
+        currentIndex = (currentIndex + 1) % selectionText.length;
+        if (selectionText[currentIndex] == ""){
+            currentIndex += 1;
+        }
+        if (currentIndex == selectionText.length - 1){
+            // @ts-ignore
+            clearInterval(intervalId);
+        }
+    }
 
 
 
@@ -46,14 +64,16 @@
         <h1 class="justify-center text-4xl">SpeedReeds</h1>
     
         <!-- Logo -->
-        <img class="w-12 h-12" src="\static\panda_48.png" alt="">
+        <img class="w-12 h-12" src="\build\panda_48.png" alt="">
         </nav>
         <main class="max-w-3xl break-words">
-        <!-- Display the selectionText -->
-        
-        <h1 class="text-2xl font-bold text-zinc-100">First word: {selectionText[0]}</h1> 
-        <h1 class="text-2xl font-bold">{selectionText}</h1>
-    
+
+            <!-- Display the selectionText -->
+            <div id="type_text" class="text-2xl font-bold text-zinc-100">{selectionText[currentIndex]}</div>
+            <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" on:click={showNextWord}>Show Next Word</button> -->
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" on:click={startAutomaticChange}>Start Automatic Change</button>
+            <h1 class="text-2xl font-bold">{selectionText}</h1>
+
         </main>
         <footer>
         <!-- Display the selectionText -->
@@ -63,5 +83,3 @@
         </footer>
     </section>
 </body>
-
-
