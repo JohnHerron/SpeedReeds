@@ -12,31 +12,31 @@
         chrome.storage.local.get("selectionText", function (result) {
             console.log(selectionText);
             selectionText = result.selectionText;
+            // selectionText = selectionText.filter(word => word.trim() !== ''); // Remove empty strings
         });
     }
 
     // change wpm according to value selected in dropdown menu
-    var wpm = 100;
+    var wpm = 375;
 
     var currentIndex = 0;
     var intervalId = null;
 
     function showNextWord() {
         currentIndex = (currentIndex + 1) % selectionText.length;
+        console.log(selectionText);
         console.log(currentIndex);
         if (currentIndex === selectionText.length - 1){
-            stopAutomaticChange();
+            stopAutomaticChange(); // Automatically stop when end of words array is reached
         } else {
-            startAutomaticChange();
+            startAutomaticChange(); // Start automatic change again with the new word
         }
     }
 
     function startAutomaticChange(){
-        if (selectionText[currentIndex] == ""){
-            currentIndex += 1;
-        }
         let currentWord = selectionText[currentIndex];
-        let delay = currentWord.length * (wpm / 2);
+        let wordsPerSecond = wpm / 60; // Calculate words per second
+        let delay = (currentWord.length / wordsPerSecond) * 200; // Calculate delay
         intervalId = setTimeout(showNextWord, delay);
     }
 
@@ -61,7 +61,7 @@
         <h1 class="justify-center text-4xl">SpeedReeds</h1>
     
         <!-- Logo -->
-        <img class="w-12 h-12" src="\build\panda_48.png" alt="">
+        <img class="w-12 h-12" src="\panda_48.png" alt="">
         </nav>
         <main class="max-w-3xl break-words">
 
