@@ -76,17 +76,23 @@
             <!-- Logo -->
             <img class="w-12 h-12" src="\panda_48.png" alt="" />
         </nav>
-        <main class="max-w-3xl break-words">
+        <main class="max-w-3xl break-words flex flex-col justify-center gap-8">
             <!-- Display the selectionText -->
-            <div id="type_text" class="text-2xl font-bold text-zinc-100">
-                {selectionText[currentIndex]}
+            <div>
+                <div id="type_text" class="text-6xl font-bold text-zinc-100">
+                    {selectionText[currentIndex]}
+                </div>
             </div>
+
             <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" on:click={showNextWord}>Show Next Word</button> -->
-            <button
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
-                on:click={startAutomaticChange}>Start Automatic Change</button
+            <textarea
+                class="text-2xl font-bold resize-none bg-zinc-800 min-h-[75%] max-h-[75%] min-w-[700px] max-w-[700px]"
+                readonly>{selectionText}</textarea
             >
-            <h1 class="text-2xl font-bold">{selectionString}</h1>
+            <button
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full content-center self-center"
+                on:click={startAutomaticChange}>Start</button
+            >
         </main>
         <footer>
             <!-- Display the selectionText -->
