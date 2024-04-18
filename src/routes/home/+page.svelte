@@ -7,15 +7,20 @@
     */
     let selectionText = "";
     let selectionString = "";
-    let splitString = "";
+    let splitString = [];
     // Function to retrieve the selectionText from Chrome storage
     function getSelectionText() {
         chrome.storage.local.get("selectionText", function (result) {
             // Check if selectionText exists in the storage result
+
             selectionText = result.selectionText;
             splitString = splitWords(selectionText);
+            console.log(splitString);
+
+            console.log(splitString[1][0]);
 
             selectionString = result.selectionText.join(" ");
+            // selectionText = selectionText.filter(word => word.trim() !== ''); // Remove empty strings
         });
     }
 
@@ -27,7 +32,6 @@
 
     function showNextWord() {
         currentIndex = (currentIndex + 1) % selectionText.length;
-
         if (currentIndex === selectionText.length - 1) {
             stopAutomaticChange(); // Automatically stop when end of words array is reached
         } else {
@@ -46,6 +50,10 @@
         clearInterval(intervalId);
     }
 
+    /*
+        Function called as soon as the comoponent is mounted to the DOM.
+    */
+    onMount(getSelectionText);
     function splitWords(text) {
         // Split each word in the array into two parts based on the middle
         return text.map((word) => {
@@ -55,11 +63,6 @@
             return [firstHalf, secondHalf];
         });
     }
-    /*
-        Function called as soon as the comoponent is mounted to the DOM.
-    */
-
-    onMount(getSelectionText);
 </script>
 
 <body>
@@ -78,16 +81,30 @@
         </nav>
         <main class="max-w-3xl break-words flex flex-col justify-center gap-8">
             <!-- Display the selectionText -->
-            <div>
-                <div id="type_text" class="text-6xl font-bold text-zinc-100">
-                    {selectionText[currentIndex]}
-                </div>
+            <div
+                class="text-6xl font-bold text-zinc-100 flex flex-row justify-center items-center"
+            >
+                {#if splitString.length > 1}
+                    <div class="">
+                        {splitString[currentIndex][0]}
+                    </div>
+
+                    <div class="bg-red-700">
+                        {splitString[currentIndex][1].charAt(0)}
+                    </div>
+
+                    <div>
+                        {splitString[currentIndex][1].substring(1)}
+                    </div>
+                {:else}
+                    <span>No split string available</span>
+                {/if}
             </div>
 
             <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" on:click={showNextWord}>Show Next Word</button> -->
             <textarea
                 class="text-2xl font-bold resize-none bg-zinc-800 min-h-[75%] max-h-[75%] min-w-[700px] max-w-[700px]"
-                readonly>{selectionText}</textarea
+                readonly>{selectionString}</textarea
             >
             <button
                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full content-center self-center"
