@@ -21,7 +21,7 @@ function genericOnClick(info) {
 
   // Split the selectionText into separate words
   var split = selectionText.split(" ");
-  console.log(split)
+
 
   chrome.storage.local.set({ "selectionText": split });
 
