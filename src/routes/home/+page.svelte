@@ -100,19 +100,17 @@
     </nav>
     <main class="max-w-3xl break-words flex flex-col justify-center gap-8">
       <!-- Display the selectionText -->
-      <div
-        class="text-6xl font-bold text-zinc-100 flex flex-row justify-center items-center"
-      >
+      <div class="word-container">
         {#if splitString.length > 1}
-          <div class="">
+          <div class="left-half">
             {splitString[currentIndex][0]}
           </div>
 
-          <div class="bg-red-700">
+          <div class="highlighted-letter">
             {splitString[currentIndex][1].charAt(0)}
           </div>
 
-          <div>
+          <div class="right-half">
             {splitString[currentIndex][1].substring(1)}
           </div>
         {:else}

@@ -22,3 +22,35 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.word-container {
+    position: relative;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.highlighted-letter {
+    position: absolute;
+    color: rgb(255, 128, 0);
+    transform: translateX(-50%)
+}
+
+.left-half,
+.right-half {
+    position: absolute;
+    overflow: hidden; /* Hide overflow of halves */
+    white-space: nowrap; /* Ensure the halves don't wrap */
+}
+
+.left-half {
+    right: 100%; /* Position the left half relative to the highlighted letter */
+    margin-right: 0.25em;
+
+}
+
+.right-half {
+    left: 100%; /* Position the right half relative to the highlighted letter */
+    margin-left: 0.25em;
+}
