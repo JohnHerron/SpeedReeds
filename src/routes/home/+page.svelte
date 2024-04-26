@@ -25,7 +25,7 @@
   }
 
   // change wpm according to value selected in dropdown menu
-  var wpm = 375;
+  var wpm = 350;
 
   var currentIndex = 0;
   var intervalId = null;
@@ -88,15 +88,25 @@
   <section
     class="flex h-screen flex-col items-center justify-between p-6 bg-zinc-800 text-zinc-400"
   >
-    <nav class="flex w-full items-center justify-between">
-      <!-- WPM and Font Size Dropdowns -->
-      <div class="text-lg">WPM and Font Size Dropdowns</div>
-
-      <!-- SpeedReeds Text -->
-      <h1 class="justify-center text-4xl">SpeedReeds</h1>
-
-      <!-- Logo -->
-      <img class="w-12 h-12" src="\panda_48.png" alt="" />
+    <nav class="w-full flex items-center justify-between">
+        <!-- WPM and Font Size Dropdowns -->
+        <div class="text-4xl">
+        <label for="wpm" title="Words Per Minute">WPM</label>
+        <input class="w-3em bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
+                bind:value={wpm}
+                type="number" 
+                id="wpm" 
+                max="1500" 
+                min="25" 
+                step="25" 
+        />
+        </div>
+    
+        <!-- SpeedReeds Text -->
+        <h1 class="text-4xl justify-center translate-x-[-50%]">SpeedReeds</h1>
+    
+        <!-- Logo -->
+        <img class="w-12 h-12" src="\panda_48.png" alt="" />
     </nav>
     <main class="max-w-3xl break-words flex flex-col justify-center gap-8">
       <!-- Display the selectionText -->
