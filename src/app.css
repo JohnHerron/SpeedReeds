@@ -34,7 +34,7 @@
 
 .highlighted-letter {
     position: absolute;
-    color: rgb(255, 128, 0);
+    color: #4aff46;
     transform: translateX(-50%);
     border-width: 1px;
     border-color: #888;

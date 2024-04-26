@@ -125,7 +125,7 @@
       >
       <button
         id="playBtn"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full content-center self-center"
+        class="bg-[#4aff46] hover:bg-green-500 text-white font-bold py-2 px-4 rounded-full content-center self-center"
         on:click={togglePlayback}>{playBtnText}</button
       >
     </main>
