@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import { writable } from "svelte/store";
 
   /*
         States
@@ -40,7 +39,7 @@
   }
 
   let paused = true;
-  let playBtnText = "Start";
+  let playBtnText = "\u23F5";
   function startAutomaticChange() {
     let currentWord = selectionText[currentIndex];
     let wordsPerSecond = wpm / 60; // Calculate words per second
@@ -48,7 +47,7 @@
     intervalId = setTimeout(showNextWord, delay);
 
     paused = false;
-    playBtnText = "Pause";
+    playBtnText = "\u23F8";
   }
 
   function togglePlayback() {
@@ -62,7 +61,7 @@
   function pauseAutomaticChange() {
     clearInterval(intervalId);
     paused = true;
-    playBtnText = "Start";
+    playBtnText = "\u23F5";
   }
 
   function stopAutomaticChange() {
@@ -135,8 +134,10 @@
       >
       <button
         id="playBtn"
-        class="bg-[#4aff46] hover:bg-green-500 text-white font-bold py-2 px-4 rounded-full content-center self-center"
-        on:click={togglePlayback}>{playBtnText}</button
+        class="bg-[#4aff46] text-4xl hover:bg-green-500 text-white font-bold pb-2 px-4 rounded-2xl content-center self-center text-center"
+        on:click={togglePlayback}>
+            {playBtnText}
+        </button
       >
     </main>
     <footer>
