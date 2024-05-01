@@ -148,14 +148,12 @@
     <footer class="mb-6">
 
       <!-- Bamboo Reeds at Bottom of Page -->
-      <div class="flex flex-row justify-center items-center space-x-4">
+      <div class="flex flex-row-reverse justify-center items-center gap-x-4">
         {#each Array.from({ length: 5 }, (_, i) => i) as index}
-            {#if currentIndex >= selectionText.length * (index + 1) / 5}
+            {#if currentIndex < (selectionText.length -1) * (index + 1) / 5}
                 <img class="w-12 h-12" src="\bamboo_reed.png" alt="" />
-            {:else if (currentIndex + 1) == selectionText.length * (index + 1) / 5}
-            <img class="w-12 h-12" src="\bamboo_reed.png" alt="" />
             {:else}
-                <img class="w-8 h-8" src="\BlackDot.svg" alt="" />
+                <img class="w-12 h-12" src="\BlackDot.svg" alt="" />
             {/if}
         {/each}
       </div>
