@@ -68,6 +68,11 @@
     clearInterval(intervalId);
   }
 
+  console.log("currindex: ", currentIndex);
+  if (currentIndex >= splitString.length / 5){
+      console.log("hiiii");
+  }
+
   /*
         Function called as soon as the comoponent is mounted to the DOM.
     */
@@ -140,12 +145,20 @@
         </button
       >
     </main>
-    <footer>
-      <!-- Display the selectionText -->
+    <footer class="mb-6">
 
-      <h1 class="text-3xl font-bold underline">
-        5 reeds to display how far you are in the selected text
-      </h1>
+      <!-- Bamboo Reeds at Bottom of Page -->
+      <div class="flex flex-row justify-center items-center space-x-4">
+        {#each Array.from({ length: 5 }, (_, i) => i) as index}
+            {#if currentIndex >= selectionText.length * (index + 1) / 5}
+                <img class="w-12 h-12" src="\bamboo_reed.png" alt="" />
+            {:else if (currentIndex + 1) == selectionText.length * (index + 1) / 5}
+            <img class="w-12 h-12" src="\bamboo_reed.png" alt="" />
+            {:else}
+                <img class="w-8 h-8" src="\BlackDot.svg" alt="" />
+            {/if}
+        {/each}
+      </div>
     </footer>
   </section>
 </body>
