@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { goto } from '$app/navigation';
 
   /*
         States
@@ -118,13 +119,16 @@
           min="25"
           step="25"
         />
-      </div>
-
-      <!-- SpeedReeds Text -->
-      <h1 class="text-4xl justify-center translate-x-[-50%]">SpeedReeds</h1>
-
-      <!-- Logo -->
-      <img class="w-12 h-12" src="\panda_48.png" alt="" />
+        </div>
+    
+        <!-- SpeedReeds Text -->
+        <h1 class="text-4xl justify-center translate-x-[-50%]">SpeedReeds</h1>
+    
+        <div class="flex gap-x-8">
+          <button on:click={() => {goto('/feedback')}}>SUBMIT FEEDBACK</button>
+          <!-- Logo -->
+          <img class="w-12 h-12" src="\panda_48.png" alt="" />
+        </div>
     </nav>
     <main class="max-w-3xl break-words flex flex-col justify-center gap-8">
       <!-- Display the selectionText -->
