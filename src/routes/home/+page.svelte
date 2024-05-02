@@ -111,7 +111,7 @@
         <h1 class="text-4xl justify-center translate-x-[-50%]">SpeedReeds</h1>
     
         <div class="flex gap-x-8">
-          <button on:click={() => {goto('/feedback')}}>FEEDBACK</button>
+          <button on:click={() => {goto('/feedback')}}>SUBMIT FEEDBACK</button>
           <!-- Logo -->
           <img class="w-12 h-12" src="\panda_48.png" alt="" />
         </div>
