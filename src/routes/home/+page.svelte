@@ -33,6 +33,8 @@
       if (chosenWPM !== undefined) {
         wpmStore.set(chosenWPM);
         initialWPMRetrieved = true;
+      } else {
+        wpmStore.set(defaultWPM);
       }
     });
   }
