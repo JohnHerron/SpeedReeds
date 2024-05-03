@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { goto } from '$app/navigation';
+  import { writable } from "svelte/store";
+  import {browser as browserSvelte} from'$app/environment';
 
 
   let selectionText = "";
@@ -14,9 +16,6 @@
 
       selectionText = result.selectionText;
       splitString = splitWords(selectionText);
-      console.log(splitString);
-
-      console.log(splitString[1][0]);
 
       selectionString = result.selectionText.join(" ");
       // selectionText = selectionText.filter(word => word.trim() !== ''); // Remove empty strings
@@ -24,7 +23,27 @@
   }
 
   // change wpm according to value selected in dropdown menu
-  var wpm = 350;
+  const defaultWPM = 350
+  const wpmStore = writable(defaultWPM);
+  let initialWPMRetrieved = false;
+
+  function getWPMSetting() {
+    chrome.storage.local.get("wpm", function(result) {
+      const chosenWPM = result.wpm;
+      if (chosenWPM !== undefined) {
+        wpmStore.set(chosenWPM);
+        initialWPMRetrieved = true;
+      }
+    });
+  }
+
+  onMount(getWPMSetting)
+  
+  wpmStore.subscribe((val) => {
+    if (browserSvelte && initialWPMRetrieved) {
+      chrome.storage.local.set({"wpm": val});
+    } 
+  });
 
   var currentIndex = 0;
   var intervalId = null;
@@ -41,7 +60,7 @@
   let playBtnText = "\u23F5";
   function startAutomaticChange() {
     let currentWord = selectionText[currentIndex];
-    let wordsPerSecond = Number(wpm) / 60; // Calculate words per second
+    let wordsPerSecond = Number($wpmStore) / 60; // Calculate words per second
     let delay = (currentWord.length / wordsPerSecond) * 200; // Calculate delay
     intervalId = setTimeout(showNextWord, delay);
 
@@ -105,7 +124,7 @@
         <label for="wpm" title="Words Per Minute">WPM</label>
         <input
           class="w-3em bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
-          bind:value={wpm}
+          bind:value={$wpmStore}
           type="number"
           id="wpm"
           max="1500"
