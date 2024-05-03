@@ -2,12 +2,11 @@
   import { onMount } from "svelte";
   import { goto } from '$app/navigation';
 
-  /*
-        States
-    */
+
   let selectionText = "";
   let selectionString = "";
   let splitString = [];
+
   // Function to retrieve the selectionText from Chrome storage
   function getSelectionText() {
     chrome.storage.local.get("selectionText", function (result) {
@@ -29,7 +28,6 @@
 
   var currentIndex = 0;
   var intervalId = null;
-
   function showNextWord() {
     currentIndex = (currentIndex + 1) % selectionText.length;
     if (currentIndex === selectionText.length - 1) {
@@ -43,7 +41,7 @@
   let playBtnText = "\u23F5";
   function startAutomaticChange() {
     let currentWord = selectionText[currentIndex];
-    let wordsPerSecond = wpm / 60; // Calculate words per second
+    let wordsPerSecond = Number(wpm) / 60; // Calculate words per second
     let delay = (currentWord.length / wordsPerSecond) * 200; // Calculate delay
     intervalId = setTimeout(showNextWord, delay);
 
@@ -82,14 +80,9 @@
     clearInterval(intervalId);
   }
 
-  console.log("currindex: ", currentIndex);
-  if (currentIndex >= splitString.length / 5) {
-    console.log("hiiii");
-  }
-
   /*
-        Function called as soon as the comoponent is mounted to the DOM.
-    */
+    Function called as soon as the comoponent is mounted to the DOM.
+  */
   onMount(getSelectionText);
   function splitWords(text) {
     // Split each word in the array into two parts based on the middle
