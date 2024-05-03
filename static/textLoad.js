@@ -25,4 +25,7 @@ function genericOnClick(info) {
   chrome.windows.create(popupWindow);
 }
 
-chrome.contextMenus.create(contextMenuItem);
+// only add context menu item on first install/update
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create(contextMenuItem);
+});
