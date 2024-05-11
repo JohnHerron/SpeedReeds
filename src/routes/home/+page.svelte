@@ -67,7 +67,7 @@
     intervalId = setTimeout(showNextWord, delay);
 
     paused = false;
-    playBtnText = "\u23F8";
+    playBtnText = "\u23f8";
   }
 
   function togglePlayback() {
@@ -94,7 +94,7 @@
   function pauseAutomaticChange() {
     clearInterval(intervalId);
     paused = true;
-    playBtnText = "\u23F5";
+    playBtnText = "\u23f5";
   }
 
   function stopAutomaticChange() {
@@ -136,7 +136,7 @@
         </div>
     
         <!-- SpeedReeds Text -->
-        <h1 class="text-4xl justify-center translate-x-[-50%]">SpeedReeds</h1>
+        <h1 class="text-4xl absolute left-1/2 transform -translate-x-1/2">SpeedReeds</h1>
     
         <div class="flex gap-x-8">
           <button on:click={() => {goto('/feedback')}}>SUBMIT FEEDBACK</button>
@@ -166,7 +166,7 @@
 
       <!-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" on:click={showNextWord}>Show Next Word</button> -->
       <textarea
-        class="text-2xl font-bold resize-none bg-zinc-800 min-h-[75%] max-h-[75%] min-w-[700px] max-w-[700px]"
+        class="text-2xl resize-none bg-zinc-800 min-h-[75%] max-h-[75%] min-w-[700px] max-w-[700px]"
         readonly>{selectionString}</textarea
       >
       <div class="flex flex-row gap-x-3 justify-center items-center">
@@ -179,7 +179,7 @@
 
         <button
           id="playBtn"
-          class="bg-[#4aff46] text-4xl hover:bg-green-500 text-white font-bold pb-2 px-4 rounded-2xl"
+          class="text-4xl hover:scale-105 transition-transform text-zinc-400 px-4 rounded-2xl"
           on:click={togglePlayback}
         >
           {playBtnText}
